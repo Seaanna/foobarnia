@@ -10,6 +10,10 @@ describe AutoSeeker do
       [4,'Red',14999,40.0,'diesel'],
     ]
     @seeker = AutoSeeker.new data
+
+    data_with_nil = data.clone
+    data_with_nil << [5,'Teal',14999,nil,'gas']
+    @seeker_with_nil = AutoSeeker.new data_with_nil
   end
 
 
@@ -23,6 +27,10 @@ describe AutoSeeker do
   describe ".median_mileage " do
     it "calculates median mileage for all autos" do
       AutoSeeker.median_mileage(@seeker.autos).must_equal 26.0
+    end
+
+    it "ignores nil values" do
+      AutoSeeker.median_mileage(@seeker_with_nil.autos).must_equal 26.0
     end
   end
 end

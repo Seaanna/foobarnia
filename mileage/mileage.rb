@@ -1,5 +1,6 @@
 require 'csv'
 require './auto_seeker'
+require 'pry'
 
 data = CSV.read('foobarnian_autos.csv')
 
