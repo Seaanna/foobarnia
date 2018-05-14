@@ -6,9 +6,13 @@ class AutoSeeker
     @data = data
   end
 
-  def filter key, match
+  def filter key, value1, value2 = nil
     @autos = autos.select do |auto|
-      auto.send(key) == match
+      if key == "price"
+        (auto.send(key).to_f >= value1.to_f) and (auto.send(key).to_f <= value2.to_f)
+      else
+        auto.send(key) == value1
+      end
     end
   end
 
